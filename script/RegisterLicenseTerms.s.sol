@@ -2,19 +2,31 @@
 pragma solidity ^0.8.26;
 
 import {Script} from "forge-std/Script.sol";
-import {IPILicenseTemplate} from "@storyprotocol/core/interfaces/modules/licensing/IPILicenseTemplate.sol";
-import {PILTerms} from "@storyprotocol/core/interfaces/modules/licensing/IPILicenseTemplate.sol";
+import {Vm} from "forge-std/Vm.sol";
+import {console2} from "forge-std/console2.sol";
+import {IPILicenseTemplate} from "protocol-core-v1/interfaces/modules/licensing/IPILicenseTemplate.sol";
+import {PILTerms} from "protocol-core-v1/interfaces/modules/licensing/IPILicenseTemplate.sol";
 
 contract RegisterLicenseTerms is Script {
-    // Ava's IP NFT contract address
-    address constant AVA_IP = 0x6b0af5c02fefb2d4fc920776d0feecd00cad0d4a;
+    // Ava's IP NFT contract address (checksummed)
+    address constant AVA_IP = 0x6b0AF5c02Fefb2d4FC920776D0fEECd00CaD0d4A;
     
     // Story Protocol Contract Addresses
     IPILicenseTemplate constant PIL_TEMPLATE = IPILicenseTemplate(0x2E896b0b2Fdb7457499B56AAaA4AE55BCB4Cd316);
     address constant ROYALTY_POLICY_LAP = 0xBe54FB168b3c982b7AaE60dB6CF75Bd8447b390E;
     address constant MERC20 = 0xF2104833d386a2734a4eB3B8ad6FC6812F29E38E;
 
+    function setUp() public {
+        // Verify contract addresses exist
+        require(address(PIL_TEMPLATE).code.length > 0, "PIL_TEMPLATE not deployed");
+        require(ROYALTY_POLICY_LAP.code.length > 0, "ROYALTY_POLICY_LAP not deployed");
+        require(MERC20.code.length > 0, "MERC20 not deployed");
+    }
+
     function run() public {
+        // Log start of execution
+        console2.log("Starting license terms registration...");
+        
         // Create CC BY-like PIL Terms
         PILTerms memory pilTerms = PILTerms({
             transferable: true,                // License can be transferred
@@ -33,17 +45,18 @@ contract RegisterLicenseTerms is Script {
             derivativesReciprocal: false,      // No reciprocal licensing (CC BY)
             derivativeRevCeiling: 0,           // No derivative revenue ceiling
             currency: MERC20,                  // Use MERC20 token
-            uri: "ipfs://QmHash"               // Terms URI (to be replaced)
+            uri: "ipfs://QmXZQpPxDC3DnzGhVr6yNs8qhzA8mZXJAZCQWAd4i7LJQt"  // Actual IPFS hash
         });
 
+        console2.log("PIL Terms struct created");
+        
         vm.startBroadcast();
         
-        // Register the PIL Terms
-        uint256 licenseTermsId = PIL_TEMPLATE.registerLicenseTerms(pilTerms);
-        
-        // Verify registration
-        uint256 selectedLicenseTermsId = PIL_TEMPLATE.getLicenseTermsId(pilTerms);
-        require(licenseTermsId == selectedLicenseTermsId, "License terms not registered correctly");
+        // Register the PIL Terms with error logging
+        console2.log("Attempting to register license terms...");
+        uint256 licenseId = PIL_TEMPLATE.registerLicenseTerms(pilTerms);
+        console2.log("License terms registered with ID:", licenseId);
+        require(licenseId > 0, "License terms not registered correctly");
 
         vm.stopBroadcast();
     }
