@@ -1,6 +1,6 @@
 # Ava IP on Story Protocol
 
-This repository demonstrates how to register and license an IP (Ava from To Da Moon) on Story Protocol using their SDK and smart contracts.
+This repository demonstrates how to register and license an IP (Ava Asher - The NFT Artist) from To Da Moon where 6 AI agents interact with each other in a simulation (Demo here https://crypto-city-client.web.app/) on Story Protocol using their SDK and smart contracts.
 
 ## Overview
 
