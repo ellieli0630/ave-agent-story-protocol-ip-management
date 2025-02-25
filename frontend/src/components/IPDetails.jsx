@@ -1,67 +1,130 @@
 import { useState, useEffect } from 'react';
+import { useContractRead, useAccount, useContractReads } from 'wagmi';
+import { ethers } from 'ethers';
 import { formatAddress, formatDate } from '../utils/format';
 import '../styles/IPDetails.css';
 
 const IPFS_GATEWAY = 'https://ipfs.io/ipfs/';
-const AVA_CREATOR = "0xb8De82bFE670070559f3E587F7d4aDa2802bbf77";
-const AVA_IPFS_HASH = "QmYqA9uqHhKgJ9LZqKgSyY5w5JZ8kbvNqHLEqkxZyZY5Zj"; // Replace with actual IPFS hash
+const AVA_CONTRACT = "0x04fbd8a2e56dd85CFD5500A4A4DfA955B9f1dE6f";
+const IP_REGISTRY = "0x77319B4031e6eF1250907aa00018B8B1c67a244b";
+const LICENSING_FRAMEWORK = "0x04fbd8a2e56dd85CFD5500A4A4DfA955B9f1dE6f";
+const STORY_PROTOCOL_EXPLORER = "https://testnet.storyprotocol.xyz";
+
+// Import ABIs
+import AvaCharacterABI from '../../../abis/AvaCharacter.json';
+import IPAssetRegistryABI from '../../../abis/IPAssetRegistry.json';
 
 function IPDetails() {
+  const { address } = useAccount();
   const [ipDetails, setIpDetails] = useState({
     name: "Ava",
-    description: "Ava is a digital native character who embodies the spirit of web3. Born in the metaverse, she's a curious and adventurous soul exploring the frontiers of digital innovation. With her signature blue hair and vibrant personality, Ava bridges the gap between traditional storytelling and blockchain technology.",
+    description: "Loading...",
     avatar: "https://raw.githubusercontent.com/storyprotocol/my-story-pf/main/assets/ava.png",
-    creator: AVA_CREATOR,
-    createdAt: "2024-01-15T00:00:00Z",
+    creator: null,
+    createdAt: null,
     license: "CC BY 4.0",
-    tags: ["character", "digital native", "web3", "metaverse"],
+    tags: [],
     socialLinks: {
       twitter: "https://x.com/ToDaMoon_Ava",
       website: "https://story-protocol.xyz"
-    },
-    traits: [
-      { name: "Personality", value: "Adventurous, Curious, Tech-savvy" },
-      { name: "Appearance", value: "Blue hair, Digital-inspired outfit" },
-      { name: "Background", value: "Born in the metaverse" },
-      { name: "Mission", value: "Exploring web3 storytelling" }
-    ]
+    }
   });
 
   const [derivatives, setDerivatives] = useState([]);
+  const [isLoadingDerivatives, setIsLoadingDerivatives] = useState(true);
 
-  // Fetch IPFS metadata
+  // Read Ava's metadata from the contract
+  const { data: avaMetadata } = useContractRead({
+    address: AVA_CONTRACT,
+    abi: AvaCharacterABI.abi,
+    functionName: 'tokenURI',
+    args: [1], // Assuming Ava is token ID 1
+  });
+
+  // Read IP registration details
+  const { data: ipRegistration } = useContractRead({
+    address: IP_REGISTRY,
+    abi: IPAssetRegistryABI.abi,
+    functionName: 'getIPAccount',
+    args: [AVA_CONTRACT],
+  });
+
+  // Get the IP ID for Ava
+  const { data: avaIpId } = useContractRead({
+    address: IP_REGISTRY,
+    abi: IPAssetRegistryABI.abi,
+    functionName: 'ipId',
+    args: [1, AVA_CONTRACT, 1], // chainId, tokenContract, tokenId
+  });
+
+  // Fetch IPFS metadata when available
   useEffect(() => {
-    const fetchIpfsMetadata = async () => {
+    if (avaMetadata) {
+      const fetchMetadata = async () => {
+        try {
+          const ipfsHash = avaMetadata.replace('ipfs://', '');
+          const response = await fetch(`${IPFS_GATEWAY}${ipfsHash}`);
+          const metadata = await response.json();
+          
+          setIpDetails(prevDetails => ({
+            ...prevDetails,
+            ...metadata,
+            creator: ipRegistration?.owner || prevDetails.creator,
+            createdAt: ipRegistration?.createdAt ? new Date(ipRegistration.createdAt * 1000).toISOString() : prevDetails.createdAt
+          }));
+        } catch (error) {
+          console.error('Failed to fetch IPFS metadata:', error);
+        }
+      };
+
+      fetchMetadata();
+    }
+  }, [avaMetadata, ipRegistration]);
+
+  // Fetch derivative works
+  useEffect(() => {
+    const fetchDerivatives = async () => {
+      if (!avaIpId) return;
+
       try {
-        const response = await fetch(`${IPFS_GATEWAY}${AVA_IPFS_HASH}`);
-        const metadata = await response.json();
-        setIpDetails(prevDetails => ({
-          ...prevDetails,
-          ...metadata
-        }));
+        setIsLoadingDerivatives(true);
+        
+        // In a real implementation, we would query the Story Protocol contracts
+        // to get the list of derivative works. For now, we'll use a placeholder
+        // that demonstrates the UI structure.
+        const mockDerivatives = [
+          {
+            id: 1,
+            title: "Ava's Digital Adventure",
+            creator: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+            createdAt: "2025-02-20T00:00:00Z",
+            imageUrl: `${IPFS_GATEWAY}QmYqA9uqHhKgJ9LZqKgSyY5w5JZ8kbvNqHLEqkxZyZY5Zj`,
+            description: "A digital comic series featuring Ava exploring the metaverse",
+            licenseType: "Commercial",
+            status: "Approved"
+          },
+          {
+            id: 2,
+            title: "Ava in Web3 Wonderland",
+            creator: "0x123d35Cc6634C0532925a3b844Bc454e4438f456",
+            createdAt: "2025-02-22T00:00:00Z",
+            imageUrl: `${IPFS_GATEWAY}QmYqA9uqHhKgJ9LZqKgSyY5w5JZ8kbvNqHLEqkxZyZY5Zk`,
+            description: "An interactive story where Ava guides users through Web3 concepts",
+            licenseType: "Non-Commercial",
+            status: "Pending"
+          }
+        ];
+
+        setDerivatives(mockDerivatives);
       } catch (error) {
-        console.error('Failed to fetch IPFS metadata:', error);
+        console.error('Failed to fetch derivatives:', error);
+      } finally {
+        setIsLoadingDerivatives(false);
       }
     };
 
-    fetchIpfsMetadata();
-  }, []);
-
-  // Fetch derivatives from contract
-  useEffect(() => {
-    // Mock data - replace with actual contract call
-    setDerivatives([
-      {
-        id: 1,
-        title: "Ava in Cyberpunk City",
-        creator: "0xabcd...1234",
-        createdAt: new Date().toISOString(),
-        imageUrl: "ipfs://Qm...",
-        ipfsUrl: "https://ipfs.io/ipfs/Qm...",
-        description: "Ava exploring a neon-lit cyberpunk cityscape"
-      }
-    ]);
-  }, []);
+    fetchDerivatives();
+  }, [avaIpId]);
 
   return (
     <div className="ip-details-container">
@@ -79,19 +142,28 @@ function IPDetails() {
         <div className="ip-metadata">
           <div className="metadata-item">
             <div className="metadata-label">Creator</div>
-            <div className="metadata-value">{formatAddress(ipDetails.creator)}</div>
+            <div className="metadata-value">{ipDetails.creator ? formatAddress(ipDetails.creator) : 'Loading...'}</div>
           </div>
           <div className="metadata-item">
             <div className="metadata-label">Created</div>
-            <div className="metadata-value">{formatDate(ipDetails.createdAt)}</div>
+            <div className="metadata-value">{ipDetails.createdAt ? formatDate(ipDetails.createdAt) : 'Loading...'}</div>
+          </div>
+          <div className="metadata-item">
+            <div className="metadata-label">Contract</div>
+            <div className="metadata-value">
+              <a 
+                href={`https://testnet.storyprotocol.xyz/address/${AVA_CONTRACT}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="metadata-link"
+              >
+                {formatAddress(AVA_CONTRACT)}
+              </a>
+            </div>
           </div>
           <div className="metadata-item">
             <div className="metadata-label">License</div>
             <div className="metadata-value">{ipDetails.license}</div>
-          </div>
-          <div className="metadata-item">
-            <div className="metadata-label">Tags</div>
-            <div className="metadata-value">{ipDetails.tags.join(', ')}</div>
           </div>
           <div className="metadata-item">
             <div className="metadata-label">Social</div>
@@ -114,62 +186,72 @@ function IPDetails() {
           </div>
         </div>
 
-        <div className="character-traits">
-          <h2 className="traits-title">Character Traits</h2>
-          <div className="traits-grid">
-            {ipDetails.traits.map((trait, index) => (
-              <div key={index} className="trait-item">
-                <div className="trait-label">{trait.name}</div>
-                <div className="trait-value">{trait.value}</div>
-              </div>
-            ))}
+        {ipDetails.attributes && (
+          <div className="character-traits">
+            <h2 className="traits-title">Character Traits</h2>
+            <div className="traits-grid">
+              {ipDetails.attributes.map((trait, index) => (
+                <div key={index} className="trait-item">
+                  <div className="trait-label">{trait.trait_type}</div>
+                  <div className="trait-value">{trait.value}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="derivatives-section">
         <h2 className="derivatives-title">Derivative Works</h2>
-        <div className="derivatives-grid">
-          {derivatives.map((derivative) => (
-            <div key={derivative.id} className="derivative-card">
-              <img 
-                src={derivative.imageUrl?.replace('ipfs://', IPFS_GATEWAY)} 
-                alt={derivative.title}
-                className="derivative-image"
-              />
-              <div className="derivative-info">
-                <h3 className="derivative-title">{derivative.title}</h3>
-                <div className="derivative-metadata">
-                  <div>
-                    <span className="metadata-label">Creator:</span>
-                    <span className="metadata-value">{formatAddress(derivative.creator)}</span>
+        {isLoadingDerivatives ? (
+          <div className="loading-message">Loading derivative works...</div>
+        ) : derivatives.length === 0 ? (
+          <div className="no-derivatives-message">No derivative works found</div>
+        ) : (
+          <div className="derivatives-grid">
+            {derivatives.map((derivative) => (
+              <div key={derivative.id} className="derivative-card">
+                <div className="derivative-image-container">
+                  <img 
+                    src={derivative.imageUrl} 
+                    alt={derivative.title}
+                    className="derivative-image"
+                  />
+                  <div className={`status-badge ${derivative.status.toLowerCase()}`}>
+                    {derivative.status}
                   </div>
-                  <div>
-                    <span className="metadata-label">Created:</span>
-                    <span className="metadata-value">{formatDate(derivative.createdAt)}</span>
+                </div>
+                <div className="derivative-info">
+                  <h3 className="derivative-title">{derivative.title}</h3>
+                  <div className="derivative-metadata">
+                    <div className="metadata-row">
+                      <span className="metadata-label">Creator:</span>
+                      <a 
+                        href={`${STORY_PROTOCOL_EXPLORER}/address/${derivative.creator}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="metadata-value address-link"
+                      >
+                        {formatAddress(derivative.creator)}
+                      </a>
+                    </div>
+                    <div className="metadata-row">
+                      <span className="metadata-label">Created:</span>
+                      <span className="metadata-value">{formatDate(derivative.createdAt)}</span>
+                    </div>
+                    <div className="metadata-row">
+                      <span className="metadata-label">License:</span>
+                      <span className="metadata-value">{derivative.licenseType}</span>
+                    </div>
+                    <div className="metadata-row description">
+                      <p className="metadata-value">{derivative.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span className="metadata-label">Description:</span>
-                    <p className="metadata-value">{derivative.description}</p>
-                  </div>
-                  <a 
-                    href={derivative.ipfsUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="derivative-link"
-                  >
-                    View on IPFS
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

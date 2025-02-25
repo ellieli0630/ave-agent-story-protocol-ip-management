@@ -66,65 +66,125 @@
 }
 
 .derivatives-section {
-  margin-top: 4rem;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
 }
 
 .derivatives-title {
-  color: #ffffff;
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #fff;
 }
 
 .derivatives-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .derivative-card {
-  background: rgba(30, 30, 40, 0.9);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease-in-out;
 }
 
 .derivative-card:hover {
   transform: translateY(-4px);
 }
 
-.derivative-image {
+.derivative-image-container {
+  position: relative;
   width: 100%;
-  height: 200px;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  overflow: hidden;
+}
+
+.derivative-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+.status-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge.approved {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+}
+
+.status-badge.pending {
+  background: rgba(241, 196, 15, 0.2);
+  color: #f1c40f;
+}
+
 .derivative-info {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .derivative-title {
-  color: #ffffff;
   font-size: 1.2rem;
+  font-weight: 600;
   margin-bottom: 1rem;
+  color: #fff;
 }
 
 .derivative-metadata {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-}
-
-.derivative-link {
-  color: #64b5f6;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
   gap: 0.5rem;
-  margin-top: 1rem;
 }
 
-.derivative-link:hover {
-  text-decoration: underline;
+.metadata-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.metadata-row.description {
+  margin-top: 0.5rem;
+}
+
+.metadata-row .metadata-label {
+  color: rgba(255, 255, 255, 0.6);
+  min-width: 70px;
+}
+
+.metadata-row .metadata-value {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.address-link {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.address-link:hover {
+  color: #2980b9;
+}
+
+.loading-message,
+.no-derivatives-message {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.1rem;
 }
 
 .character-traits {
