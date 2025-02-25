@@ -1,0 +1,186 @@
+.ip-details-container {
+  padding: 2rem;
+  color: #ffffff;
+}
+
+.original-ip {
+  background: rgba(30, 30, 40, 0.9);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.original-ip-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.avatar-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ip-info {
+  flex: 1;
+}
+
+.ip-title {
+  color: #ffffff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ip-metadata {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.metadata-item {
+  background: rgba(40, 40, 50, 0.5);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.metadata-label {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.metadata-value {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.derivatives-section {
+  margin-top: 4rem;
+}
+
+.derivatives-title {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.derivatives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.derivative-card {
+  background: rgba(30, 30, 40, 0.9);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.derivative-card:hover {
+  transform: translateY(-4px);
+}
+
+.derivative-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.derivative-info {
+  padding: 1.5rem;
+}
+
+.derivative-title {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.derivative-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.derivative-link {
+  color: #64b5f6;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.derivative-link:hover {
+  text-decoration: underline;
+}
+
+.character-traits {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.traits-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.traits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.trait-item {
+  background: rgba(40, 40, 50, 0.5);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.trait-label {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.trait-value {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #64b5f6;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.social-link:hover {
+  text-decoration: underline;
+}
+
+.social-link svg {
+  flex-shrink: 0;
+}

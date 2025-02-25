@@ -1,0 +1,71 @@
+{
+    "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "ipId",
+                    "type": "address"
+                },
+                {
+                    "components": [
+                        {
+                            "internalType": "address",
+                            "name": "licenseTemplate",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "bytes",
+                            "name": "terms",
+                            "type": "bytes"
+                        }
+                    ],
+                    "internalType": "struct ILicenseRegistry.LicenseTerms",
+                    "name": "licenseTerms",
+                    "type": "tuple"
+                }
+            ],
+            "name": "registerLicenseTerms",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "termsId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getLicenseTerms",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "address",
+                            "name": "licenseTemplate",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "bytes",
+                            "name": "terms",
+                            "type": "bytes"
+                        }
+                    ],
+                    "internalType": "struct ILicenseRegistry.LicenseTerms",
+                    "name": "",
+                    "type": "tuple"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+}
