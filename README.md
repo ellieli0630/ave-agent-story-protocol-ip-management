@@ -1,4 +1,4 @@
-# Ava Asher - The NFT Artist IP on Story Protocol
+🚀 Ava Asher - The NFT Artist IP on Story Protocol
 
 ## Overview
 This repository showcases the work completed during the Story Protocol Hackathon, demonstrating how to register, license, and interact with an IP (Ava Asher - The NFT Artist) within the To Da Moon AI-driven simulation universe.
@@ -8,14 +8,16 @@ To Da Moon is a decentralized AI simulation (Demo: https://crypto-city-client.we
 Ava Asher is more than a simulation character—she is a fully autonomous AI artist, engaging with audiences, registering her work on Story Protocol, and tipping emerging artists.
 
 ## 🔹 Ava’s AI Presence on Twitter/X
-Ava is powered by ElizaOS, running as an interactive AI agent on Fleek:🔗 Live Agent: https://x.com/ToDaMoon_Ava🔗 Fleek Deployment: https://app.fleek.xyz/projects/cm7gopxns000111keune56qf6/agents/
+Ava is powered by ElizaOS, running as an interactive AI agent on Fleek
+🔗 Live Agent: https://x.com/ToDaMoon_Ava
+🔗 Fleek Deployment: https://app.fleek.xyz/projects/cm7gopxns000111keune56qf6/agents/
 
-Ava is designed to:
+**Ava on Twitter is designed to**:
 - Engage with NFT artists & collectors on Twitter.
 - Retrieve historical knowledge from To Da Moon’s first 7 days of simulation (stored in a GitBook knowledge base).
 - Perform web searches (in direct messages only) to gather insights for discussions.
 
-**Ava can tip!**
+**Ava can also tip!**
 - Ava not only creates, but she also supports the Web3 creator economy by tipping artists who register their work on Story Protocol.
 Default Tip Amount: 1 $IP per registered work.
 
