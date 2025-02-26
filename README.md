@@ -1,19 +1,32 @@
-# Ava IP on Story Protocol
+# Ava Asher - The NFT Artist IP on Story Protocol
 
 ## Overview
-This repository is a collection of what I did during Story Protocol Hackathon. It demonstrates how to register and license an IP (Ava Asher - The NFT Artist) from To Da Moon where 6 AI agents interact with each other in a simulation (Demo here https://crypto-city-client.web.app/) on Story Protocol using their SDK and smart contracts.
+This repository showcases the work completed during the Story Protocol Hackathon, demonstrating how to register, license, and interact with an IP (Ava Asher - The NFT Artist) within the To Da Moon AI-driven simulation universe.
 
-**Ava as an agent on Twitter**
-Character file registered on IPFS is also loaded into Fleek to run as an agent powered by ElizaOS (https://app.fleek.xyz/projects/cm7gopxns000111keune56qf6/agents/) running under https://x.com/ToDaMoon_Ava
-- Agent is able to interact with audience on Twitter, mostly the NFT artists agent followed
-- retrieve knowledge from knowledge base on Gitbook about what happened in the first 7 days of the simulation in the To Da Moon simulation 
-- Web search (only in direct chat) 
+To Da Moon is a decentralized AI simulation (Demo: https://crypto-city-client.web.app/) where six autonomous AI agents engage in power struggles within the volatile crypto ecosystem of Moonchain. This project extends Ava Asher’s presence beyond the simulation by leveraging Story Protocol's SDK and smart contracts to establish her as an autonomous AI Agent operating in Web3.
+
+Ava Asher is more than a simulation character—she is a fully autonomous AI artist, engaging with audiences, registering her work on Story Protocol, and tipping emerging artists.
+
+## 🔹 Ava’s AI Presence on Twitter/X
+Ava is powered by ElizaOS, running as an interactive AI agent on Fleek:🔗 Live Agent: https://x.com/ToDaMoon_Ava🔗 Fleek Deployment: https://app.fleek.xyz/projects/cm7gopxns000111keune56qf6/agents/
+
+Ava is designed to:
+- Engage with NFT artists & collectors on Twitter.
+- Retrieve historical knowledge from To Da Moon’s first 7 days of simulation (stored in a GitBook knowledge base).
+- Perform web searches (in direct messages only) to gather insights for discussions.
 
 **Ava can tip!**
-In seperate repos, it also showcases how Ava can tip an IP (default 1 $IP for now) being registered on Story Protocol - https://github.com/ellieli0630/story-protocol-tipping 
+- Ava not only creates, but she also supports the Web3 creator economy by tipping artists who register their work on Story Protocol.
+Default Tip Amount: 1 $IP per registered work.
+
+https://github.com/ellieli0630/story-protocol-tipping 
 
 **The Promise of ATCP/IP **
-Inspired by MCP, another agent works seperately to help users create AI-generated images (OpenAI) and videos(Luma), upload them to IPFS, register them as IP assets on the Story blockchain, and share them on Twitter. Then it posts on Twitter so Ava can tip the great work from fans. The complete process includes: via https://github.com/ellieli0630/langgraph-mcp-agent-twitter
+Inspired by MCP, another AI agent (His name is Devin: https://x.com/Moonchain_Devin/) operates separately to assist users in generating and registering AI-created assets. This includes:
+- Generating AI images (OpenAI) & videos (Luma).
+- Uploading these creations to IPFS.
+- Registering them as IP assets on Story Protocol.
+- Sharing them on Twitter for Ava to discover and tip outstanding works.: via https://github.com/ellieli0630/langgraph-mcp-agent-twitter
 
 The ultimate vision is that these 6 AI agents can live inside of a simulation but also function as AI agents outside with distictive tasks they can perform agent to agent with IP protection! 
 
