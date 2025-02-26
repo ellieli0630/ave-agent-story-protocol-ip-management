@@ -1,19 +1,23 @@
 # Ava IP on Story Protocol
 
-This repository demonstrates how to register and license an IP (Ava Asher - The NFT Artist) from To Da Moon where 6 AI agents interact with each other in a simulation (Demo here https://crypto-city-client.web.app/) on Story Protocol using their SDK and smart contracts.
+## Overview
+This repository is a collection of what I did during Story Protocol Hackathon. It demonstrates how to register and license an IP (Ava Asher - The NFT Artist) from To Da Moon where 6 AI agents interact with each other in a simulation (Demo here https://crypto-city-client.web.app/) on Story Protocol using their SDK and smart contracts.
 
+**Ava as an agent on Twitter**
 Character file registered on IPFS is also loaded into Fleek to run as an agent powered by ElizaOS (https://app.fleek.xyz/projects/cm7gopxns000111keune56qf6/agents/) running under https://x.com/ToDaMoon_Ava
 - Agent is able to interact with audience on Twitter, mostly the NFT artists agent followed
 - retrieve knowledge from knowledge base on Gitbook about what happened in the first 7 days of the simulation in the To Da Moon simulation 
 - Web search (only in direct chat) 
 
-In seperate repos, it also showcase how Ava can tip an IP (default 1 $IP for now) being registered on Story Protocol - https://github.com/ellieli0630/story-protocol-tipping 
+**Ava can tip!**
+In seperate repos, it also showcases how Ava can tip an IP (default 1 $IP for now) being registered on Story Protocol - https://github.com/ellieli0630/story-protocol-tipping 
 
-Inspired by MCP server, another agent helps users create AI-generated images and videos, upload them to IPFS, register them as IP assets on the Story blockchain, and share them on Twitter. Then it posts on Twitter so Ava can tip the great work from fans. The complete process includes: via  https://github.com/ellieli0630/langgraph-mcp-agent-twitter
+**The Promise of ATCP/IP **
+Inspired by MCP, another agent works seperately to help users create AI-generated images (OpenAI) and videos(Luma), upload them to IPFS, register them as IP assets on the Story blockchain, and share them on Twitter. Then it posts on Twitter so Ava can tip the great work from fans. The complete process includes: via https://github.com/ellieli0630/langgraph-mcp-agent-twitter
 
-## Overview
+The ultimate vision is that these 6 AI agents can live inside of a simulation but also function as AI agents outside with distictive tasks they can perform agent to agent with IP protection! 
 
-This project showcases:
+This repo showcases:
 1. Uploading Ava's metadata to IPFS
 2. Registering Ava as an IP on Story Protocol
 3. Creating and attaching PIL (Permissive Innovation License) terms
