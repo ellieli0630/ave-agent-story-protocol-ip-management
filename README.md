@@ -1,4 +1,4 @@
-🚀 Ava Asher - The NFT Artist IP on Story Protocol
+# 🚀 Ava Asher - The NFT Artist IP on Story Protocol
 
 ## Overview
 This repository showcases the work completed during the Story Protocol Hackathon, demonstrating how to register, license, and interact with an IP (Ava Asher - The NFT Artist) within the To Da Moon AI-driven simulation universe.
