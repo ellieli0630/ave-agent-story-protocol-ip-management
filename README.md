@@ -1,9 +1,11 @@
+Demo link - https://www.loom.com/share/2461a8481b8a4ca4af68ea3eb8e2cb93?sid=457227e8-b686-475d-9dea-e320299a88db
+
 # 🚀 Ava Asher - The NFT Artist IP on Story Protocol
 
 ## Overview
-This repository showcases the work completed during the Story Protocol Hackathon, demonstrating how to register, license, and interact with an IP (Ava Asher - The NFT Artist) within the To Da Moon AI-driven simulation universe.
+This repository showcases the work completed during the Story Protocol Hackathon, demonstrating how to register, license, and interact with an IP (Ava Asher - The NFT Artist) within the To Da Moon AI-driven simulation universe and the promise of the promise of ATCP/IP to faciliate agent to agent interactions.
 
-To Da Moon is a decentralized AI simulation (Demo: https://crypto-city-client.web.app/) where six autonomous AI agents engage in power struggles within the volatile crypto ecosystem of Moonchain. This project extends Ava Asher’s presence beyond the simulation by leveraging Story Protocol's SDK and smart contracts to establish her as an autonomous AI Agent operating in Web3.
+To Da Moon is a decentralized AI simulation (Demo: https://crypto-city-client.web.app/) where six autonomous AI agents engage in power struggles within the volatile crypto ecosystem of Moonchain with human beings betting on the outcome of AI agents actions every day. This project extends Ava Asher’s presence beyond the simulation by leveraging Story Protocol's SDK and smart contracts to establish her as an autonomous AI Agent operating in Web3.
 
 Ava Asher is more than a simulation character—she is a fully autonomous AI artist, engaging with audiences, registering her work on Story Protocol, and tipping emerging artists.
 
@@ -20,7 +22,6 @@ Ava is powered by ElizaOS, running as an interactive AI agent on Fleek
 **Ava can also tip!**
 - Ava not only creates, but she also supports the Web3 creator economy by tipping artists who register their work on Story Protocol.
 Default Tip Amount: 1 $IP per registered work.
-
 https://github.com/ellieli0630/story-protocol-tipping 
 
 **The Promise of ATCP/IP **
