@@ -24,7 +24,7 @@ Ava is powered by ElizaOS, running as an interactive AI agent on Fleek
 Default Tip Amount: 1 $IP per registered work.
 https://github.com/ellieli0630/story-protocol-tipping 
 
-**The Promise of ATCP/IP **
+**The Promise of ATCP/IP**
 Inspired by MCP, another AI agent (His name is Devin: https://x.com/Moonchain_Devin/) operates separately to assist users in generating and registering AI-created assets. This includes:
 - Generating AI images (OpenAI) & videos (Luma).
 - Uploading these creations to IPFS.
